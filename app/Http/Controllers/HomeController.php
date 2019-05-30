@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 use Illuminate\Support\Facades\Gate;
+use App\User;
+use App\Produces;
 
 class HomeController extends Controller
 {
@@ -28,9 +30,33 @@ class HomeController extends Controller
     {
         return view('home');
     }
-
-    public function admin()
+// return view or boolean
+    public function admin(Request $request)
     {
-        return view('admin');
+        $users = User::paginate(10);
+        $result = view('admin',[
+            "users"=>$users
+        ]);
+        if ($request->ajax()) {
+            $readyUpdate = User::find(intval($request['id']));
+            $num = $readyUpdate->update(
+                [$request['field']=>$request['data']]
+            );
+            if ($num == 1) {
+                $result = 'success';
+            }
+            else {
+                $result = 'fail';
+            }
+        }
+        return $result;
+    }
+
+    public function producesManagement(Request $request) {
+        $produces = Produces::paginate(10);
+        $result = view('admin',[
+            "produces"=>$produces
+        ]);
+        return $result;
     }
 }

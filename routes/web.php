@@ -18,4 +18,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/admin', 'HomeController@admin');
+Route::any('/admin', 'HomeController@admin');
+Route::prefix("admin")->group(function() {
+    Route::any('producesmanagement', 'HomeController@producesManagement');
+});

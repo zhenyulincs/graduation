@@ -9,6 +9,7 @@
     <script src="{{ asset("js/jquery-3.4.1.min.js") }}"></script>
     <script src="{{ asset("js/bootstrap.min.js") }}"></script>
     <link rel="stylesheet" href="{{ asset("css/bootstrap.min.css") }}">
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset("css/main.css") }}">
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -16,7 +17,7 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    
 </head>
 <body>
     <div id="app">
@@ -45,7 +46,7 @@
                     </ul>
 
                     <!-- Right Side Of Navbar -->
-                    <ul class="nav navbar-nav navbar-right">
+                    <ul class="nav navbar-nav navbar-right flex-row">
                         <!-- Authentication Links -->
                         @guest
                             <li><a href="{{ route('login') }}">登录</a></li>
@@ -80,6 +81,5 @@
     </div>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
 </body>
 </html>
