@@ -21,14 +21,15 @@ class HomeController extends Controller
         $this->middleware('admin')->only('admin');
     }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    
+    public function index(Request $request)
     {
-        return view('home');
+        $produces = Produces::where('userid',Auth::User()->id)->paginate(10);
+        $result = view('users.producesManagement',[
+            "produces"=>$produces
+        ]);
+        $result=$this->producesOperation($request,$result);
+        return $result;
     }
 // return view or boolean
     public function admin(Request $request)
@@ -57,6 +58,45 @@ class HomeController extends Controller
         $result = view('admin',[
             "produces"=>$produces
         ]);
+        $result=$this->producesOperation($request,$result);
+        return $result;
+    }
+
+    public function producesOperation($request,$result) {
+        $result = $result;
+        if ($request->ajax()) {
+            if (is_array($request['data'])) {
+                $num = Produces::create([
+                    'title'=>$request["data"][0],
+                    'description'=>$request["data"][1],
+                    'cover'=>$request["data"][2],
+                    'left'=>intval($request["data"][3]),
+                    'userid'=>1
+                ]);
+                if ($num) {
+                    $result = "success";
+                }
+                else {
+                    $result = "fail";
+                }
+            }
+            else if($request['deleteId']) {
+                $readyDelete = Produces::find(intval($request['deleteId']));
+                $readyDelete->delete();
+            }
+            else{
+                $readyUpdate = Produces::find(intval($request['id']));
+                $num = $readyUpdate->update(
+                    [$request['field']=>$request['data']]
+                );
+                if ($num == 1) {
+                    $result = 'success';
+                }
+                else {
+                    $result = 'fail';
+                }
+            }
+        }
         return $result;
     }
 }

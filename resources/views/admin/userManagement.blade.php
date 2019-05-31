@@ -17,19 +17,22 @@
             <th class= "id" scope="row">{{$user->id}}</th>
             <td><input type="text" class="input form-control" value="{{$user->name}}"></td>
             <td>
-                <select class="input form-control form-control-lg">
+                <select @if(Auth::User()->premission > 1 || $user->name == Auth::User()->name) disabled @endif class="input form-control form-control-lg">
                     <option value="{{$user->premission}}">
                         @if ($user->premission == 1)
-                            admin
+                            超管
+                        @elseif ($user->premission == 2)
+                            普通管理员
                         @else 
-                            nomal user
+                            正常用户
                         @endif
                     </option>
                     @if ($user->premission == 0)
-                        <option value="1">admin</option>
+                        <option value="2">普通管理员</option>
                     @else
-                        <option value="0">nomal user</option> 
+                        <option value="0">正常用户</option> 
                     @endif 
+                        <option value="-1">封禁</option>
                   </select>
                 </td>
             <td>{{$user->email}}</td>
@@ -41,3 +44,14 @@
 <div class="mr-5 float-right">
 {{$users->links()}}
 </div>
+<script>
+    $(".input").change(function() {
+        // get data value
+        var data = $(this).val()
+        // get the description of data
+        var field = $($(".lable")[$(this).parent().index()]).attr("for")
+        // get the id
+        var id = parseInt($($('.id')[$(this).parent().parent().index()]).html())
+        update(data,field,id)
+    })
+</script>

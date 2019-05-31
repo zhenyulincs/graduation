@@ -10,6 +10,6 @@ class Produces extends Model
     protected $table = 'produces';
     public $timestamps = true;
     protected $fillable = [
-        'title', 'description', 'cover','left',
+        'title', 'description', 'cover','left','userid',
     ];
 }

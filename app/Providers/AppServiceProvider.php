@@ -23,7 +23,7 @@ class AppServiceProvider extends ServiceProvider
         $this->registerPolicies();
 
         Gate::define('admin-only', function ($user, $post) {
-            if ($user->premission == 1) {
+            if ($user->premission >= 1) {
                 return true;
             } else {
                 return false;

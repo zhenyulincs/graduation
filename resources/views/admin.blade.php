@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="row">
+<div class="d-flex">
     <div id="admin-menu" class="ml-5 list-group col-1">
         <a href="{{Request::root()}}/admin" class="text-center list-group-item list-group-item-action @if(isset($users))active @endif">用户管理</a>
         <a href="{{Request::root()}}/admin/producesmanagement" class="text-center list-group-item list-group-item-action @if(isset($produces))active @endif">商品管理</a>
@@ -25,29 +25,13 @@
             "produces"=>$produces
         ])
     @endif
-    <div class="col-10 container d-flex justify-content-center align-items-center">
-        <p>Please add 
-        @if (isset($users))
-            users
-        @else
-            produces
-        @endif
-        </p>
-    </div>
+    
 </div>
 <script>
-    $(".input").change(function() {
-        // get data value
-        var data = $(this).val()
-        // get the description of data
-        var field = $($(".lable")[$(this).parent().index()]).attr("for")
-        // get the id
-        var id = parseInt($($('.id')[$(this).parent().parent().index()]).html())
-        update(data,field,id)
-    })
+    var currentUrl = window.location.pathname
     // Sending data that already changed to backend
+    
     function update(data,field,id) {
-        var currentUrl = window.location.pathname
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -60,9 +44,34 @@
             "field":field
         })
     }
-    // Checking if the table has no data
-    if ($("table tbody").children().length == 0) {
-        $("table").hide()
+    
+    function create(data) {
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $.post(currentUrl,
+        {
+            "data":data
+        }).done(function() {
+            location.reload()
+        })
     }
+
+    function remove(id) {
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $.post(currentUrl,
+        {
+            "deleteId":id
+        }).done(function() {
+            location.reload()
+        })
+    }
+    
 </script>
 @endsection
