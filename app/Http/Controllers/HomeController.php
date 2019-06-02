@@ -7,6 +7,8 @@ use Auth;
 use Illuminate\Support\Facades\Gate;
 use App\User;
 use App\Produces;
+use App\Http\Resources\ProduceResource;
+
 
 class HomeController extends Controller
 {
@@ -17,7 +19,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth')->except('queryApi');
         $this->middleware('admin')->only('admin');
     }
 
@@ -71,7 +73,8 @@ class HomeController extends Controller
                     'description'=>$request["data"][1],
                     'cover'=>$request["data"][2],
                     'left'=>intval($request["data"][3]),
-                    'userid'=>1
+                    'prices'=>intval($request["data"][4]),
+                    'userid'=>Auth::User()->id
                 ]);
                 if ($num) {
                     $result = "success";
@@ -98,5 +101,10 @@ class HomeController extends Controller
             }
         }
         return $result;
+    }
+
+    public function queryApi(Request $request) {
+        $produces = Produces::where('title','like','%'.$request['query'].'%')->paginate(10);
+        return new ProduceResource($produces);
     }
 }

@@ -12,6 +12,8 @@
                 <th scope="col">封面链接</th>
                 <label class="lable" for="left"></label>
                 <th scope="col">货品剩余</th>
+                <label class="lable" for="prices"></label>
+                <th scope="col">价格</th>
                 @if (Auth::User()->premission >= 1)
                 <th scope="col">用户id</th>
                 @endif
@@ -25,6 +27,7 @@
                 <td><input type="text" class="input form-control" value="{{$produce->description}}"></td>
                 <td><input type="text" class="input form-control" value="{{$produce->cover}}"></td>
                 <td><input type="number" class="input form-control" value="{{$produce->left}}"></td>
+                <td><input type="number" class="input form-control" value="{{$produce->prices}}"></td>
                 @if (Auth::User()->premission >= 1)
                 <td>{{$produce->userid}}</td>
                 @endif
@@ -72,6 +75,7 @@
         <td><input type="text" class="input form-control"></td>
         <td><input type="text" class="input form-control"></td>
         <td><input type="number" class="input form-control"></td>
+        <td><input type="number" class="input form-control"></td>
         <td><button type="button" class="submit btn btn-outline-primary">提交</button></td>
         <td><button type="button" class="cancel btn btn-outline-danger">取消</button></td>
     </tr>
@@ -96,7 +100,7 @@ $('.add').click(function() {
                 $(value).siblings("p").remove()
             }
         })
-        if (count == 4) {
+        if (count == 5) {
             var data = new Array()
             $($(this).parents("tr")[0]).find("input").each(function(index,value) {
                     data.push($(value).val())
