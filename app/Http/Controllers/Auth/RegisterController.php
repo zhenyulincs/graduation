@@ -62,11 +62,15 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $premission = FALSE;
+        if (!User::first()) {
+            $premission = TRUE;
+        }
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
-            'premission' => FALSE,
+            'premission' => $premission,
         ]);
     }
 }
