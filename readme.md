@@ -7,6 +7,7 @@
 > - Mbstring PHP Extension
 > - Tokenizer PHP Extension
 > - XML PHP Extension
+
 sources: <a>https://laravel.com/docs/5.5/installation</a>
 
 ## 需安装composer
@@ -19,12 +20,12 @@ cp .env.example .env
 ```
 
 ###按需求编辑.env文件：
-> DB_CONNECTION=mysql
-> DB_HOST=127.0.0.1
-> DB_PORT=3306
-> DB_DATABASE=graduation
-> DB_USERNAME=root
-> DB_PASSWORD=root
+  > DB_CONNECTION=mysql
+  > DB_HOST=127.0.0.1
+  > DB_PORT=3306
+  > DB_DATABASE=graduation
+  > DB_USERNAME=root
+  > DB_PASSWORD=root
 
 ###最后执行迁移命令:
 ```bash
