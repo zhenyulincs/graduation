@@ -17,6 +17,7 @@ sources: <a>https://laravel.com/docs/5.5/installation</a>
 ```bash
 composer install
 cp .env.example .env
+npm install
 ```
 
 ### 按需求编辑.env文件：

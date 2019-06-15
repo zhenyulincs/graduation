@@ -4,11 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Auth;
-use Illuminate\Support\Facades\Gate;
 use App\User;
 use App\Produces;
 use App\Http\Resources\ProduceResource;
-
+use App\Http\Resources\UserResource;
 
 class HomeController extends Controller
 {
@@ -20,21 +19,22 @@ class HomeController extends Controller
     public function __construct()
     {
         $this->middleware('auth')->except('queryApi');
-        $this->middleware('admin')->only('admin');
+        $this->middleware('admin')->only('adminUser');
+        $this->middleware('admin')->only('adminProducesManagement');
     }
 
     
     public function index(Request $request)
     {
         $produces = Produces::where('userid',Auth::User()->id)->paginate(10);
-        $result = view('users.producesManagement',[
+        $result = view('home',[
             "produces"=>$produces
         ]);
         $result=$this->producesOperation($request,$result);
         return $result;
     }
 // return view or boolean
-    public function admin(Request $request)
+    public function adminUser(Request $request)
     {
         $users = User::paginate(10);
         $result = view('admin',[
@@ -55,13 +55,23 @@ class HomeController extends Controller
         return $result;
     }
 
-    public function producesManagement(Request $request) {
+    public function adminProducesManagement(Request $request) {
         $produces = Produces::paginate(10);
         $result = view('admin',[
             "produces"=>$produces
         ]);
         $result=$this->producesOperation($request,$result);
         return $result;
+    }
+
+    public function queryApi(Request $request) {
+        $produces = Produces::where('title','like','%'.$request['query'].'%')->paginate(10);
+        return new ProduceResource($produces);
+    }
+
+    public function queryUserApi(Request $request) {
+        $user = User::where('id',$request['userid'])->first();
+        return new UserResource($user);
     }
 
     public function producesOperation($request,$result) {
@@ -103,8 +113,5 @@ class HomeController extends Controller
         return $result;
     }
 
-    public function queryApi(Request $request) {
-        $produces = Produces::where('title','like','%'.$request['query'].'%')->paginate(10);
-        return new ProduceResource($produces);
-    }
+    
 }

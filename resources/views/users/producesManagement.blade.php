@@ -1,7 +1,4 @@
-@extends('layouts.app')
-
-@section('content')
-<div class="col-10">
+<div class="col-11">
         <table class="produces-management ml-5 table table-hover text-center">
             <thead class="text-center">
                 <tr>
@@ -108,8 +105,9 @@
                 $($(this).parents("tr")[0]).find("input").each(function(index,value) {
                         data.push($(value).val())
                     })
-                }
                 create(data)
+                }
+                
         })
     })
     </script>
@@ -159,4 +157,3 @@
             })
         }
 </script>
-@endsection

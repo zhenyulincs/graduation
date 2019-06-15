@@ -17,7 +17,7 @@
             <th class= "id" scope="row">{{$user->id}}</th>
             <td><input type="text" class="input form-control" value="{{$user->name}}"></td>
             <td>
-                <select @if(Auth::User()->premission > 1 || $user->name == Auth::User()->name) disabled @endif class="input form-control form-control-lg">
+                <select @if(Auth::User()->premission > 1 && Auth::User()->premission < 1 || $user->name == Auth::User()->name) disabled @endif class="input form-control form-control-lg">
                     <option value="{{$user->premission}}">
                         @if ($user->premission == 1)
                             超管

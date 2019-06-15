@@ -17,6 +17,6 @@ class ProduceResource extends Resource
      */
     public function toArray($request)
     {
-        return dd($this->resource);
+        return $this->resource;
     }
 }

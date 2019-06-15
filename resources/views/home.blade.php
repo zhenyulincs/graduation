@@ -1,23 +1,56 @@
-@extends('layouts.app')
+@extends('layouts.backend')
 
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Dashboard</div>
+@include('users.producesManagement',[
+            "produces"=>$produces
+        ])
+<script>
+    var currentUrl = window.location.pathname
+    // Sending data that already changed to backend
+    
+    function update(data,field,id) {
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $.post(currentUrl,
+        {
+            "data":data,
+            "id":id,
+            "field":field
+        }).done(function() {
+            alert('成功了')
+        })
+    }
+    
+    function create(data) {
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $.post(currentUrl,
+        {
+            "data":data
+        }).done(function() {
+            location.reload()
+        })
+    }
 
-                <div class="panel-body">
-                    @if (session('status'))
-                        <div class="alert alert-success">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    You are logged in!
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+    function remove(id) {
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $.post(currentUrl,
+        {
+            "deleteId":id
+        }).done(function() {
+            location.reload()
+        })
+    }
+    
+</script>
 @endsection
