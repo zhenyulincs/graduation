@@ -18,7 +18,7 @@
         "core-js": "^2.6.5",
         "flag-icon-css": "^3.2.1",
         "font-awesome": "4.7.0",
-        "jquery": "3.3.1",
+        "jquery": ">=3.4.0",
         "pace-progress": "1.0.2",
         "perfect-scrollbar": "^1.4.0",
         "popper.js": "^1.14.7",
@@ -27,7 +27,7 @@
     "devDependencies": {
         "axios": "^0.19",
         "bootstrap-sass": "^3.3.7",
-        "jquery": "^3.2",
+        "jquery": ">=3.4.0",
         "laravel-mix": "^1.0",
         "lodash": "^4.17.4",
         "vue": "^2.5.7",
