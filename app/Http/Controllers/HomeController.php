@@ -19,6 +19,7 @@ class HomeController extends Controller
     public function __construct()
     {
         $this->middleware('auth')->except('queryApi');
+        $this->middleware('auth')->except('queryUserApi');
         $this->middleware('admin')->only('adminUser');
         $this->middleware('admin')->only('adminProducesManagement');
     }
