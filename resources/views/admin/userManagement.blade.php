@@ -1,3 +1,5 @@
+@extends('layouts.backend')
+@section('content')
 <table class="user-management ml-5 table table-hover col-10 text-center">
     <thead class="text-center">
         <tr>
@@ -55,3 +57,4 @@
         update(data,field,id)
     })
 </script>
+@endsection

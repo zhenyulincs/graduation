@@ -8,6 +8,8 @@ use App\User;
 use App\Produces;
 use App\Http\Resources\ProduceResource;
 use App\Http\Resources\UserResource;
+use App\Message;
+use App\Schedule;
 
 class HomeController extends Controller
 {
@@ -24,95 +26,164 @@ class HomeController extends Controller
         $this->middleware('admin')->only('adminProducesManagement');
     }
 
-    
-    public function index(Request $request)
+
+    public function UserProducesManagement(Request $request)
     {
-        $produces = Produces::where('userid',Auth::User()->id)->paginate(10);
-        $result = view('home',[
-            "produces"=>$produces
+        $produces = Produces::where('userid', Auth::User()->id)->paginate(10);
+        $result = view('users.producesManagement', [
+            "produces" => $produces
         ]);
-        $result=$this->producesOperation($request,$result);
+        $result = $this->producesOperation($request, $result);
         return $result;
     }
-// return view or boolean
+    // return view or boolean
     public function adminUser(Request $request)
     {
         $users = User::paginate(10);
-        $result = view('admin',[
-            "users"=>$users
+        $result = view('admin.userManagement', [
+            "users" => $users
         ]);
         if ($request->ajax()) {
             $readyUpdate = User::find(intval($request['id']));
             $num = $readyUpdate->update(
-                [$request['field']=>$request['data']]
+                [$request['field'] => $request['data']]
             );
             if ($num == 1) {
                 $result = 'success';
-            }
-            else {
+            } else {
                 $result = 'fail';
             }
         }
         return $result;
     }
 
-    public function adminProducesManagement(Request $request) {
+    public function adminProducesManagement(Request $request)
+    {
         $produces = Produces::paginate(10);
-        $result = view('admin',[
-            "produces"=>$produces
+        $result = view('admin.producesManagement', [
+            "produces" => $produces
         ]);
-        $result=$this->producesOperation($request,$result);
+        $result = $this->producesOperation($request, $result);
         return $result;
     }
 
-    public function queryApi(Request $request) {
-        $produces = Produces::where('title','like','%'.$request['query'].'%')->paginate(10);
+    public function adminMessage(Request $request)
+    {
+        $static = null;
+        $result = view('admin.message');
+        if ($request->isMethod('POST')) {
+            $static = $this->messageHandler($request);
+            $result = redirect('admin/message')->with('static', $static);
+        }
+        if (isset($request['id'])) {
+            $ifReadyStatic = Message::find($request['id'])->ifReady;
+            Message::find($request['id'])->update([
+                'ifReady' => !$ifReadyStatic,
+            ]);
+        }
+        return $result;
+    }
+
+    public function adminPersonalInfo(Request $request)
+    {
+        $error = null;
+        $static = null;
+        if ($request->isMethod('POST')) {
+            $static = $this->personalInfoHandler($request);
+        }
+        return view('admin.personalinfo', [
+            'error' => $error,
+            'static' => $static
+        ]);
+    }
+
+    public function queryApi(Request $request)
+    {
+        $produces = Produces::where('title', 'like', '%' . $request['query'] . '%')->paginate(10);
         return new ProduceResource($produces);
     }
 
-    public function queryUserApi(Request $request) {
-        $user = User::where('id',$request['userid'])->first();
+    public function queryUserApi(Request $request)
+    {
+        $user = User::where('id', $request['userid'])->first();
         return new UserResource($user);
     }
 
-    public function producesOperation($request,$result) {
+    public function messageCheckout($id)
+    {
+        $message = Message::where('id', $id)->first();
+        $ifReadyStatic = Message::find($id)->ifReady;
+        Message::find($id)->update([
+            'ifReady' => !$ifReadyStatic,
+        ]);
+        return view('messageCheckout', [
+            'message' => $message,
+        ]);
+    }
+
+    public function messageHandler($request)
+    {
+        $message = Message::create([
+            'senderId' => Auth::user()->id,
+            'receiverId' => $request['receiverId'],
+            'content' => $request['content'],
+            'title' => $request['title'],
+            'ifReady' => False,
+        ]);
+        if ($message) {
+            return 'success';
+        } else {
+            return 'fail';
+        }
+    }
+
+    public function personalInfoHandler($request)
+    {
+        $user = User::find(Auth::user()->id);
+        $num = $user->update([
+            'birthday' => $request['birthday'],
+            'description' => $request['description'],
+        ]);
+        if ($num) {
+            return 'success';
+        } else {
+            return 'false';
+        }
+    }
+
+    public function producesOperation($request, $result)
+    {
         $result = $result;
         if ($request->ajax()) {
             if (is_array($request['data'])) {
                 $num = Produces::create([
-                    'title'=>$request["data"][0],
-                    'description'=>$request["data"][1],
-                    'cover'=>$request["data"][2],
-                    'left'=>intval($request["data"][3]),
-                    'prices'=>intval($request["data"][4]),
-                    'userid'=>Auth::User()->id
+                    'title' => $request["data"][0],
+                    'description' => $request["data"][1],
+                    'cover' => $request["data"][2],
+                    'left' => intval($request["data"][3]),
+                    'prices' => intval($request["data"][4]),
+                    'userid' => Auth::User()->id
                 ]);
                 if ($num) {
                     $result = "success";
-                }
-                else {
+                } else {
                     $result = "fail";
                 }
-            }
-            else if($request['deleteId']) {
+            } else if ($request['deleteId']) {
                 $readyDelete = Produces::find(intval($request['deleteId']));
                 $readyDelete->delete();
-            }
-            else{
+            } else {
                 $readyUpdate = Produces::find(intval($request['id']));
                 $num = $readyUpdate->update(
-                    [$request['field']=>$request['data']]
+                    [$request['field'] => $request['data']]
                 );
                 if ($num == 1) {
                     $result = 'success';
-                }
-                else {
+                } else {
                     $result = 'fail';
                 }
             }
         }
         return $result;
     }
-
-    
 }

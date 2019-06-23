@@ -1,0 +1,71 @@
+@charset "utf-8";
+
+@media screen and (max-width: 800px) { 
+                .masonry { 
+                    column-count: 2;/* // two columns on larger phones*/ 
+                } 
+            } 
+ @media screen and (max-width: 500px) { 
+       .masonry { 
+           column-count: 1; /*// two columns on larger phones */
+  }
+
+}
+
+
+
+body .all
+	{
+		width: 1280px;
+		height:924px;
+	}
+/* CSS Document */
+
+.item p { 
+	/*border:5px solid #ccc;
+	background:#FFFF99;*/
+	width:300px;
+	padding:10px;
+	font-size:16px;
+	font-family:微软雅黑;
+	color:#000000;
+}
+   span {
+	   background:yellow;
+}
+
+/*大层*/
+    .container3{
+	     	width:80%;
+	   
+		margin:50px auto}
+    /*瀑布流层*/
+    .waterfall{
+        -moz-column-count:3; /* Firefox */
+        -webkit-column-count:3; /* Safari 和 Chrome */
+        column-count:3;
+        -moz-column-gap: 1em;
+      -webkit-column-gap: 1em;
+      column-gap: 1em;
+    }
+    /*一个内容层*/
+    .item{
+      padding: 1em;
+      margin: 0 0 1em 0;
+      -moz-page-break-inside: avoid;
+      -webkit-column-break-inside: avoid;
+      break-inside: avoid;
+     border: 1px solid #000;
+    }
+    .item img{
+        width: 100%;
+        margin-bottom:10px;
+    }
+
+#footer{
+	height: 45%;
+}
+
+
+
+

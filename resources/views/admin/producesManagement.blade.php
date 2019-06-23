@@ -1,3 +1,5 @@
+@extends('layouts.backend')
+@section('content')
 <div class="col-11">
     <table class="produces-management ml-5 table table-hover text-center">
         <thead class="text-center">
@@ -63,3 +65,4 @@
     })
 
 </script>
+@endsection

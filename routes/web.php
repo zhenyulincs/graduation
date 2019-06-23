@@ -17,12 +17,14 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::any('/home', 'HomeController@index')->name('home');
+Route::any('/home', 'HomeController@UserProducesManagement')->name('home');
 Route::get('/query', 'HomeController@queryApi');
 Route::get('/queryuser', 'HomeController@queryUserApi');
+Route::get('/messagecheckout/{id}','HomeController@messageCheckout');
 Route::prefix("admin")->group(function() {
     Route::any('producesmanagement', 'HomeController@adminProducesManagement');
     Route::any('/', 'HomeController@adminUser')->name('admin');
     Route::any('message', 'HomeController@adminMessage');
+    Route::post('message/submit', 'HomeController@adminMessage');
     Route::any('personalinfo', 'HomeController@adminPersonalInfo');
 });

@@ -1,0 +1,185 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<link href="../css/search.css" rel="stylesheet" type="text/css">
+	<script src="../js/search.js"></script>
+</head>
+
+<body><script src="/demos/googlegg.js"></script>
+<center><br><br><br>
+<div id="imgDefault">
+    <img class="imgItem" data-src="../images/1.前端/01.nav/用户登录.png" src="../images/1.前端/02.首页/店主推荐图1.png">
+    <img class="imgItem" data-src="../images/1.前端/01.nav/用户登录.png" src="../images/1.前端/02.首页/店主推荐图1.png">
+    <img class="imgItem" data-src="../images/1.前端/01.nav/用户登录.png" src="../images/1.前端/02.首页/店主推荐图1.png">
+    <img class="imgItem" data-src="../images/1.前端/01.nav/用户登录.png" src="../images/1.前端/02.首页/店主推荐图1.png">
+</div>
+</center>
+
+<script>
+(function(){
+    var LightBox = function(options){
+        this.imgListParent = document.getElementById(options.imgListParent);   //图片列表的父元素
+        this.imgItemClass = options.imgItemClass;   //图片的className
+        this.idx = 0;  //图片的索引，初始值为0
+        this.isShowPage = options.isShowPage || false;    //是否显示分页，默认不显示
+        this.init();
+    };
+    //初始化
+    LightBox.prototype.init = function(){
+        this.renderDOM();
+        this.imgListClick();
+        this.nextBtnClick();
+        this.prevBtnClick();
+        this.closeBtnClick();
+    };
+    //渲染弹窗
+    LightBox.prototype.renderDOM = function(){
+        var imgModule = document.createElement("div");
+        imgModule.id = "imgModule";
+
+        var oHtml = "";
+        oHtml += '<div class="mask"></div>';
+        oHtml +=    '<div class="lightBox">';
+        oHtml +=        '<div class="lightBoxContent">';
+        oHtml +=            '<img src="images/loading.gif" alt="" id="imgLoader">';
+        oHtml +=            '<img alt="" id="imgLight">';
+        oHtml +=        '</div>';
+        oHtml +=        '<span class="btn lightBoxSprite" id="lightBoxPrev"></span>';
+        oHtml +=        '<span class="btn lightBoxSprite" id="lightBoxNext"></span>';
+        oHtml +=        '<span class="closeBtn lightBoxSprite" id="closeBtn"></span>';
+        oHtml +=        '<div class="lightBoxPagination" id="lightBoxPagination"></div>';
+        oHtml +=    '</div>';
+
+        imgModule.innerHTML = oHtml;
+        document.body.appendChild(imgModule);
+    };
+    //分页
+    LightBox.prototype.pagination = function(idx){
+        var imgList = this.getByClass(this.imgListParent, this.imgItemClass);
+        var pagination = document.getElementById("lightBoxPagination");
+        var page = "";
+
+        for(var i = 0; i < imgList.length; i++){
+            if(idx == i){
+                page += '<span class="current"></span>';
+            }else{
+                page += '<span></span>';
+            }            
+        }
+        if(this.isShowPage){
+            pagination.innerHTML = page;
+        }        
+    };
+    //点击图片弹出弹窗
+    LightBox.prototype.imgListClick = function(){
+        var imgList = this.getByClass(this.imgListParent, this.imgItemClass);
+        var imgModule = document.getElementById("imgModule");
+        var self = this;
+
+        for(var i = 0; i < imgList.length; i++){
+            imgList[i].index = i;
+
+            imgList[i].onclick = function(){
+                imgModule.style.display = "block";
+                var src = this.getAttribute("data-src");
+                self.idx = this.index;
+
+                self.imgLoad(src);
+                self.pagination(self.idx);
+            }
+        }
+    };
+    //上一张
+    LightBox.prototype.prevBtnClick = function(){
+        var prevBtn = document.getElementById("lightBoxPrev");
+        var self = this;
+
+        prevBtn.onclick = function(){
+            var imgList = self.getByClass(self.imgListParent, self.imgItemClass);
+            
+            self.idx--;
+
+            if(self.idx < 0){  
+                self.idx = imgList.length - 1;  
+            }
+
+            var src = imgList[self.idx].getAttribute("data-src");
+            self.imgLoad(src);
+            self.pagination(self.idx);
+        }
+    };
+    //下一张
+    LightBox.prototype.nextBtnClick = function(){
+        var nextBtn = document.getElementById("lightBoxNext");
+        var self = this;
+        
+        nextBtn.onclick = function(){
+            var imgList = self.getByClass(self.imgListParent, self.imgItemClass);
+
+            self.idx++;            
+
+            if(self.idx >= imgList.length){  
+                self.idx = 0;  
+            }
+
+            var src = imgList[self.idx].getAttribute("data-src");
+            self.imgLoad(src);
+            self.pagination(self.idx);
+        }
+    };
+    //图片预加载
+    LightBox.prototype.imgLoad = function(src, callback){
+        var imgLight = document.getElementById("imgLight");
+        var loader = document.getElementById("imgLoader");
+        loader.style.display = "block";
+        // imgLight.src = "";
+
+        var img = new Image();
+        img.onload = function(){
+            loader.style.display = "none";
+            imgLight.src = src;
+        };
+        img.src = src;
+    };
+    //关闭弹窗
+    LightBox.prototype.closeBtnClick = function(){
+        var closeBtn = document.getElementById("closeBtn");
+        var imgModule = document.getElementById("imgModule");
+        
+        closeBtn.onclick = function(){
+            imgModule.style.display = "none"; 
+        }
+    };
+    //封装获取元素函数
+    LightBox.prototype.getByClass = function(oParent, oClass){
+        var oEle = oParent.getElementsByTagName("*");
+        var oResult = [];
+
+        for(var i = 0; i < oEle.length; i++){
+            if(oEle[i].className == oClass){
+                oResult.push(oEle[i]);
+            }
+        }
+        return oResult;
+    };
+    window.LightBox = LightBox;
+})();
+
+new LightBox({
+    imgListParent: "imgDefault",
+    imgItemClass: "imgItem",
+    isShowPage: true
+});
+</script>
+
+
+<div style="text-align:center;margin:50px 0; font:normal 14px/24px 'MicroSoft YaHei';">
+<p>适用浏览器：IE8、360、FireFox、Chrome、Safari、Opera、傲游、搜狗、世界之窗.</p>
+<p>来源：<a href="http://www.lanrenzhijia.com/" target="_blank">懒人</a></p>
+</div>
+	
+	
+</body>
+</html>
