@@ -1,6 +1,7 @@
 {{-- init model --}}
 @php
-$messages = \App\Message::where('receiverId',Auth::user()->id)->paginate(5)
+$messages = \App\Message::where('receiverId',Auth::user()->id)->paginate(5);
+$notification = \App\Message::where('receiverId',Auth::user()->id)->where('ifReady',false)->get();
 @endphp
 
 
@@ -78,9 +79,9 @@ $messages = \App\Message::where('receiverId',Auth::user()->id)->paginate(5)
             <li class="nav-item d-md-down-none">
                 <a class="nav-link" href="#exampleModal" data-toggle="modal">
                     <i class="icon-bell"></i>
-                    @if (count($messages) > 0)
+                    @if (count($notification) > 0)
                     <span class="badge badge-pill badge-danger">
-                        {{count($messages)}}
+                        {{count($notification)}}
                     </span>
                     @endif
                 </a>
