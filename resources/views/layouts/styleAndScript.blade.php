@@ -14,6 +14,7 @@
     <link href="css/flag-icon.min.css" rel="stylesheet">
     <link href="css/font-awesome.min.css" rel="stylesheet">
     <link href="css/simple-line-icons.css" rel="stylesheet">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <!-- Main styles for this application-->
     <link href="css/style.css" rel="stylesheet">
     <link href="css/pace.min.css" rel="stylesheet">
@@ -36,6 +37,11 @@
                   // Bootstrap ID
                   gtag('config', 'UA-118965717-5');
     </script>
+    <style>
+    body {
+      background: url('img/background4.png')
+    }
+    </style>
 </head>
 @yield('content')
 <script src="js/jquery.min.js"></script>

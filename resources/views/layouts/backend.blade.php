@@ -23,6 +23,7 @@ $notification = \App\Message::where('receiverId',Auth::user()->id)->where('ifRea
     <link href="css/flag-icon.min.css" rel="stylesheet">
     <link href="css/font-awesome.min.css" rel="stylesheet">
     <link href="css/simple-line-icons.css" rel="stylesheet">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <!-- Main styles for this application-->
     <link href="css/style.css" rel="stylesheet">
     <link href="css/pace.min.css" rel="stylesheet">
@@ -58,9 +59,8 @@ $notification = \App\Message::where('receiverId',Auth::user()->id)->where('ifRea
         <button class="navbar-toggler sidebar-toggler d-lg-none mr-auto" type="button" data-toggle="sidebar-show">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <a class="navbar-brand">
-            <img class="navbar-brand-full" src="img/brand/logo.svg" width="89" height="25" alt="CoreUI Logo">
-            <img class="navbar-brand-minimized" src="img/brand/sygnet.svg" width="30" height="30" alt="CoreUI Logo">
+        <a href="{{asset('admin')}}" class="navbar-brand">
+            <img class="navbar-brand-full" src="img/logo.png" style="width:76%" alt="Logo">
         </a>
         <button class="navbar-toggler sidebar-toggler d-md-down-none" type="button" data-toggle="sidebar-lg-show">
             <span class="navbar-toggler-icon"></span>
@@ -181,20 +181,21 @@ $notification = \App\Message::where('receiverId',Auth::user()->id)->where('ifRea
                 @if (Auth::User()->premission>=1)
                 <li class="nav-item">
                     <a class="nav-link" href="{{asset('admin')}}">
-                        <i class="nav-icon icon-drop"></i> 用户管理</a>
+                        <img class="nav-icon" src="img/usermanagement.png" alt="用户管理">
+                        用户管理</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{asset('admin/message')}}">
-                        <i class="nav-icon icon-pencil"></i> 信息发送</a>
+                        <img src="img/message.png" class="nav-icon">信息发送</a>
                 </li>
                 @endif
                 <li class="nav-item">
                     <a class="nav-link" href="{{asset('admin/producesmanagement')}}">
-                        <i class="nav-icon icon-pencil"></i> 商品管理</a>
+                        <img class="nav-icon" src="img/producemanagement.png"> 商品管理</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{asset('admin/personalinfo')}}">
-                        <i class="nav-icon icon-pencil"></i> 个人信息</a>
+                        <img class="nav-icon" src="img/personalinfo.png"> 个人信息</a>
                 </li>
             </ul>
         </nav>

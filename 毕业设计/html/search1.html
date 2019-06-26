@@ -1,42 +1,70 @@
 <!doctype html>
 <html>
+
 <head>
-<meta charset="utf-8">
-<title>搜索到的界面</title>
-<link href="../css/style.css" rel="stylesheet" type="text/css">
+	<meta charset="utf-8">
+	<title>搜索到的界面</title>
+	<link href="../css/style.css" rel="stylesheet" type="text/css">
 	<link href="../css/search.css" rel="stylesheet" type="text/css">
-		<script src="../js/search.js"></script>
+	<script src="../js/search.js"></script>
 	<link rel="stylesheet" type="text/css" href="../css/style6.css">
-	  <link rel="stylesheet" type="text/css" href="../css/demo.css" />
-	
-	
+	<link rel="stylesheet" type="text/css" href="../css/demo.css" />
+
+
 	<link rel="stylesheet" type="text/css" href="../css/normalize.css">
-		<script src="../js/modernizr.custom.js"></script>
-<!--	<script src="swiper.min.js"></script>-->
-	
+	<script src="../js/modernizr.custom.js"></script>
+	<script src="../jq/jquery-3.4.1.min.js"></script>
+	<!--	<script src="swiper.min.js"></script>-->
+	<script>
+		$(document).ready(function () {
+			$('.waterfall').children().remove()
+			var API = "http://127.0.0.1/graduation/public/query?query="
+			$.urlParam = function (name) {
+				var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+				return results[1] || 0;
+			}
+			function html(title, image) {
+				return `
+				<div class="item">
+						<img src="${image}">
+					<p>${title}</p>
+				</div>`
+			}
+			var keyword = $.urlParam('search-box')
+			$.getJSON(API + keyword, function (data) {
+				$.each(data['data'], function (key, val) {
+					$('.waterfall').append(html(val['title'], val['cover']))
+				})
+			})
+		})
+
+
+	</script>
 </head>
 
 <body>
 	<div class="all">
-		
-  <div id="nav">
-	  <div class="center">
-		 <div class="nav">
-			<img class="user" src="../images/The_front_end/nav/user.png"  alt="图片无法显示">
-			<img class="logo" src="../images/The_front_end/nav/logo.png"  alt="图片无法显示">
-				  <div class="nav-right">
+
+		<div id="nav">
+			<div class="center">
+				<div class="nav">
+					<img class="user" src="../images/The_front_end/nav/user.png" alt="图片无法显示">
+					<img class="logo" src="../images/The_front_end/nav/logo.png" alt="图片无法显示">
+					<div class="nav-right">
 						<!--<img class="search1" src="images/1.前端/01.nav/搜索.png" alt="图片无法显示">-->
-					  <div class="container2">
-						  <div class="search1">
-						   <input class="tian" type="text" style="color: #000000" />
-                            <input class="chaxun" type="button" value="查找" />
-						   </div>
-					  </div>
-					 <!-- <input type=image src="images/1.前端/01.nav/菜单栏面.png"></input>--><!--<button id="trigger-overlay" type="button" style="opacity:0.5;"><img class="menu" src="images/1.前端/01.nav/菜单栏面.png" alt="图片无法显示"></button>--><!--<img class="menu" src="images/1.前端/01.nav/菜单栏面.png" alt="图片无法显示">-->
-					  
-					  
-					  <div class="container2">
-			<!--<header class="codrops-header">
+						<div class="container2">
+							<div class="search1">
+								<input class="tian" type="text" style="color: #000000" />
+								<input class="chaxun" type="button" value="查找" />
+							</div>
+						</div>
+						<!-- <input type=image src="images/1.前端/01.nav/菜单栏面.png"></input>-->
+						<!--<button id="trigger-overlay" type="button" style="opacity:0.5;"><img class="menu" src="images/1.前端/01.nav/菜单栏面.png" alt="图片无法显示"></button>-->
+						<!--<img class="menu" src="images/1.前端/01.nav/菜单栏面.png" alt="图片无法显示">-->
+
+
+						<div class="container2">
+							<!--<header class="codrops-header">
 				<h1>Fullscreen Overlay Styles &amp; Effects</h1>	
 				<nav class="codrops-demos">
 					<a href="index.html">Huge Inc</a>
@@ -52,307 +80,318 @@
 					<a href="index12.html">Genie</a>
 				</nav>
 			</header>-->
-					  <section>
-				<!--<p>Overlay opens like a door from the middle and content fades in.</p>-->
-				<p><button id="trigger-overlay" type="button"><img src="../images/The_front_end/nav/menu.png"></button></p>
-			</section>
-		</div><!-- /container -->
-		<!-- open/close -->
-		<div class="overlay overlay-door">
-			<button type="button" class="overlay-close">Close</button>
-			<nav>
-				<ul>
-					<li><a href="#">主页</a></li>
-					<li><a href="html/one_sub page.html">产品页面</a></li>
-					<li><a href="#">精美礼品</a></li>
-					<li><a href="#">关于我们</a></li>
-					<li><a href="#">联系我们</a></li>
-					<li><a href="#">订单查询</a></li>
-				</ul>
-			</nav>
-		</div>
-	<script src="../js/classie.js"></script>
-	<script src="../js/demo1.js"></script>
-					  
-					
-					  
-						
-				  </div>
-		 </div>
-	  </div>
-  </div>
-	
-    <div class="container3">
-        <div class="waterfall">
-            <div class="item">
-                <a href="details5.html">
-					<img src="../images/The_front_end/search/1.jpg">
-				</a>
-                <p>1 convallis timestamp</p>
-           </div>
-
-
-
-            <div class="item">
-				<a href="#"><img src="../images/The_front_end/search/2.jpg"></a>
-                <p id="box1">你是谁呀. </p>
-           </div>
+							<section>
+								<!--<p>Overlay opens like a door from the middle and content fades in.</p>-->
+								<p><button id="trigger-overlay" type="button"><img
+											src="../images/The_front_end/nav/menu.png"></button></p>
+							</section>
+						</div><!-- /container -->
+						<!-- open/close -->
+						<div class="overlay overlay-door">
+							<button type="button" class="overlay-close">Close</button>
+							<nav>
+								<ul>
+									<li><a href="#">主页</a></li>
+									<li><a href="html/one_sub page.html">产品页面</a></li>
+									<li><a href="#">精美礼品</a></li>
+									<li><a href="#">关于我们</a></li>
+									<li><a href="#">联系我们</a></li>
+									<li><a href="#">订单查询</a></li>
+								</ul>
+							</nav>
+						</div>
+						<script src="../js/classie.js"></script>
+						<script src="../js/demo1.js"></script>
 
 
 
 
-            <div class="item">
-                <a href="#"><img src="../images/The_front_end/search/3.png"></a>
-                <p id="box2">3 Nullam eget lectus augue. Donec eu sem sit amet ligula 
-        faucibus suscipit. Suspendisse rutrum turpis quis nunc 
-        convallis quis aliquam mauris suscipit.</p>
-           </div>
-
-
-
-            <div class="item">
-                <a href="#"><img src="../images/The_front_end/search/4.png"></a>
-                <p  id="box3"> 4 Donec a fermentum nisi. Integer dolor est, commodo ut 
-        sagittis vitae, egestas at augue. </p>
-           </div>
-
-           <div class="item">
-                <a href="#"><img src="../images/The_front_end/search/5.jpg"></a>
-                <p> 5 Donec a fermentum nisi. Integer dolor est, commodo ut sagittis vitae, egestas at augue.</p>
-           </div>
-			
-			<div class="item">
-                <a href="#"><img src="../images/The_front_end/search/6.png"></a>
-                <p id="box4">1 convallis timestamp</p>
-           </div>
-
-
-
-            <div class="item">
-                <a href="#"><img src="../images/The_front_end/search/7.jpg"></a>
-                <p id="box5">2 convallis timestamp 2 Donec a fermentum nisi. </p>
-           </div>
-
-
-
-
-            <div class="item">
-                <a href="#"><img src="../images/The_front_end/search/8.jpg"></a>
-                <p id="box6">3 Nullam eget lectus augue. Donec eu sem sit amet ligula 
-        faucibus suscipit. Suspendisse rutrum turpis quis nunc 
-        convallis quis aliquam mauris suscipit.</p>
-           </div>
-
-
-
-            <div class="item">
-                <a href="#"><img src="../images/The_front_end/search/9.jpg"></a>
-                <p id="box7"> 4 Donec a fermentum nisi. Integer dolor est, commodo ut 
-        sagittis vitae, egestas at augue. </p>
-           </div>
-           
-			<div class="item">
-                <a href="#"><img src="../images/The_front_end/search/10.jpg"></a>
-                <p>1 convallis timestamp</p>
-           </div>
-			
-			<div class="item">
-                <a href="#"><img src="../images/The_front_end/search/11.jpg"></a>
-                <p>1 convallis timestamp</p>
-           </div>
-           
-			<div class="item">
-                <a href="details6.html"><img src="../images/The_front_end/search/12.jpg"></a>
-                <p>1 convallis timestamp</p>
-           </div>
-			
-			<div class="item">
-                <a href="#"><img src="../images/The_front_end/search/13.jpg"></a>
-                <p>1 convallis timestamp</p>
-           </div>
-			
-			<div class="item">
-                <a href="details.html">
-					<img src="../images/The_front_end/search/14.jpg">
-				</a>
-                <p>1 convallis timestamp</p>
-           </div>
-			
-			<div class="item">
-                <a href="#"><img src="../images/The_front_end/search/15.jpg"></a>
-                <p>1 convallis timestamp</p>
-           </div>
-			
-			<div class="item">
-                <a href="#"><img src="../images/The_front_end/search/16.jpg"></a>
-                <p>1 convallis timestamp</p>
-           </div>
-			
-			<div class="item">
-                <a href="#"><img src="../images/The_front_end/search/17.png"></a>
-                <p>1 convallis timestamp</p>
-           </div>
-			
-			<div class="item">
-                <a href="#"><img src="../images/The_front_end/search/18.png"></a>
-                <p>1 convallis timestamp</p>
-           </div>
-			
-			<div class="item">
-                <a href="#"><img src="../images/The_front_end/search/19.jpg"></a>
-                <p>1 convallis timestamp</p>
-           </div>
-			
-			<div class="item">
-                <a href="#"><img src="../images/The_front_end/search/20.jpg"></a>
-                <p>1 convallis timestamp</p>
-           </div>
-			
-			<div class="item">
-                <a href="#"><img src="../images/The_front_end/search/21.jpg"></a>
-                <p>1 convallis timestamp</p>
-           </div>
-			
-			<div class="item">
-                <a href="#"><img src="../images/The_front_end/search/22.jpg"></a>
-                <p>1 convallis timestamp</p>
-           </div>
-			
-			<div class="item">
-                <a href="#"><img src="../images/The_front_end/search/23.jpg"></a>
-                <p>1 convallis timestamp</p>
-           </div>
-			
-			<div class="item">
-                <a href="details7.html">
-					<img src="../images/The_front_end/search/24.jpg">
-				</a>
-                <p>1 convallis timestamp</p>
-           </div>
-			
-			<div class="item">
-                <a href="#"><img src="../images/The_front_end/search/25.jpg"></a>
-                <p>1 convallis timestamp</p>
-           </div>
-			
-			<div class="item">
-                <a href="details3.html">
-					<img src="../images/The_front_end/search/26.jpg">
-				</a>
-                <p>1 convallis timestamp</p>
-           </div>
-			 
-			<div class="item">
-                <a href="#"><img src="../images/The_front_end/search/27.jpg"></a>
-                <p>1 convallis timestamp</p>
-           </div>
-			
-			<div class="item">
-                <a href="#"><img src="../images/The_front_end/search/28.jpg"></a>
-                <p>1 convallis timestamp</p>
-           </div>
-			
-			<div class="item">
-                <a href="#"><img src="../images/The_front_end/search/29.jpg"></a>
-                <p>1 convallis timestamp</p>
-           </div>
-			
-			<div class="item">
-                <a href="#"><img src="../images/The_front_end/search/30.jpg"></a>
-                <p>1 convallis timestamp</p>
-           </div>
-			
-			<div class="item">
-                <a href="#"><img src="../images/The_front_end/search/31.jpg"></a>
-                <p>1 convallis timestamp</p>
-           </div>
-			
-			<div class="item">
-                <a href="#"><img src="../images/The_front_end/search/27.jpg"></a>
-                <p>1 convallis timestamp</p>
-           </div>
-			
-			<div class="item">
-                <a href="#"><img src="../images/The_front_end/search/32.jpg"></a>
-                <p>1 convallis timestamp</p>
-           </div>
-			
-			<div class="item">
-                <a href="#"><img src="../images/The_front_end/search/33.jpg"></a>
-                <p>1 convallis timestamp</p>
-           </div>
-			
-			<div class="item">
-                <a href="#"><img src="../images/The_front_end/search/34.jpg"></a>
-                <p>1 convallis timestamp</p>
-           </div>
-			
-			<div class="item">
-				<a href="#"><img src="../images/The_front_end/search/35.jpg"></a>
-                <p>1 convallis timestamp</p>
-           </div>
-			
-			
-        </div>
-    </div>
-		
-		
-<div id="footer"><!--footer-->
-	  <div class="footer1">
-			
-		    <div class="footer-top">
-				<div class="foott-left">
-				  <h2 style="margin-bottom: 25px; color: #FFFFFF;">反馈信息</h2>
-				  <h5 style="color: #FFFFFF;">联系我们，提出不好的意见</h5>
-			   </div>
-				<div class="foott-right">
-					<div class="button1 m-t-4p"><a href="#">加载更多</a></div>
+					</div>
 				</div>
-		    </div>
-		   <div class="footer-button">
-		       <div class="footb-left">
-				   <img src="../images/The_front_end/details/logo.png" style="width: 100%">
-		       </div>
-               <div class="footb-right">
-				     <ul>
-						 <li><a><h3>首页</h3></a></li>
-						 <li><a>为什么选择樱束？</a></li>
-						 <li><a>关于我们</a></li>
-						 <li><a>联系我们</a></li>
-						 <li><a>微博</a></li>
-				     </ul>
-				      <ul>
-				         <li><a><h3>法律知识</h3></a></li>
-						 <li><a>协议</a></li>
-						 <li><a>隐私</a></li>
-						 <li><a>互联网使用</a></li>
-						 <li><a>版权所有</a></li>
-				     </ul>
-				      <ul>
-				         <li><a><h3>搜索</h3></a></li>
-						 <li><a>产品介绍</a></li>
-						 <li><a>购买</a></li>
-						 <li><a>订单</a></li>
-						 <li><a>快递问题</a></li>
-				     </ul>
-				    <ul>
-				         <li><a><h3>关于我们</h3></a></li>
-						 <li><a>xiapshidai@fashion.com</a></li>
-						 <li><a>深圳市宝安区职业技术学校</a></li>
-						 <li><a>+15-6956-4235</a></li>
-						 <ul class="f-l" style="width: 100%;">
-						   <li class="f-l p-r15" ><a><img src="../images/The_front_end/home/QQ.png"></a></li>
-						   <li class="f-l p-r15" ><a><img src="../images/The_front_end/home/weibo.png"></a></li>
-							 <li class="f-l"><a><img src="../images/The_front_end/home/chat.png"></a></li>
+			</div>
+		</div>
+
+		<div class="container3">
+			<div class="waterfall">
+				<div class="item">
+					<a href="details5.html">
+						<img src="../images/The_front_end/search/1.jpg">
+					</a>
+					<p>1 convallis timestamp</p>
+				</div>
+
+
+
+				<div class="item">
+					<a href="#"><img src="../images/The_front_end/search/2.jpg"></a>
+					<p id="box1">你是谁呀. </p>
+				</div>
+
+
+
+
+				<div class="item">
+					<a href="#"><img src="../images/The_front_end/search/3.png"></a>
+					<p id="box2">3 Nullam eget lectus augue. Donec eu sem sit amet ligula
+						faucibus suscipit. Suspendisse rutrum turpis quis nunc
+						convallis quis aliquam mauris suscipit.</p>
+				</div>
+
+
+
+				<div class="item">
+					<a href="#"><img src="../images/The_front_end/search/4.png"></a>
+					<p id="box3"> 4 Donec a fermentum nisi. Integer dolor est, commodo ut
+						sagittis vitae, egestas at augue. </p>
+				</div>
+
+				<div class="item">
+					<a href="#"><img src="../images/The_front_end/search/5.jpg"></a>
+					<p> 5 Donec a fermentum nisi. Integer dolor est, commodo ut sagittis vitae, egestas at augue.</p>
+				</div>
+
+				<div class="item">
+					<a href="#"><img src="../images/The_front_end/search/6.png"></a>
+					<p id="box4">1 convallis timestamp</p>
+				</div>
+
+
+
+				<div class="item">
+					<a href="#"><img src="../images/The_front_end/search/7.jpg"></a>
+					<p id="box5">2 convallis timestamp 2 Donec a fermentum nisi. </p>
+				</div>
+
+
+
+
+				<div class="item">
+					<a href="#"><img src="../images/The_front_end/search/8.jpg"></a>
+					<p id="box6">3 Nullam eget lectus augue. Donec eu sem sit amet ligula
+						faucibus suscipit. Suspendisse rutrum turpis quis nunc
+						convallis quis aliquam mauris suscipit.</p>
+				</div>
+
+
+
+				<div class="item">
+					<a href="#"><img src="../images/The_front_end/search/9.jpg"></a>
+					<p id="box7"> 4 Donec a fermentum nisi. Integer dolor est, commodo ut
+						sagittis vitae, egestas at augue. </p>
+				</div>
+
+				<div class="item">
+					<a href="#"><img src="../images/The_front_end/search/10.jpg"></a>
+					<p>1 convallis timestamp</p>
+				</div>
+
+				<div class="item">
+					<a href="#"><img src="../images/The_front_end/search/11.jpg"></a>
+					<p>1 convallis timestamp</p>
+				</div>
+
+				<div class="item">
+					<a href="details6.html"><img src="../images/The_front_end/search/12.jpg"></a>
+					<p>1 convallis timestamp</p>
+				</div>
+
+				<div class="item">
+					<a href="#"><img src="../images/The_front_end/search/13.jpg"></a>
+					<p>1 convallis timestamp</p>
+				</div>
+
+				<div class="item">
+					<a href="details.html">
+						<img src="../images/The_front_end/search/14.jpg">
+					</a>
+					<p>1 convallis timestamp</p>
+				</div>
+
+				<div class="item">
+					<a href="#"><img src="../images/The_front_end/search/15.jpg"></a>
+					<p>1 convallis timestamp</p>
+				</div>
+
+				<div class="item">
+					<a href="#"><img src="../images/The_front_end/search/16.jpg"></a>
+					<p>1 convallis timestamp</p>
+				</div>
+
+				<div class="item">
+					<a href="#"><img src="../images/The_front_end/search/17.png"></a>
+					<p>1 convallis timestamp</p>
+				</div>
+
+				<div class="item">
+					<a href="#"><img src="../images/The_front_end/search/18.png"></a>
+					<p>1 convallis timestamp</p>
+				</div>
+
+				<div class="item">
+					<a href="#"><img src="../images/The_front_end/search/19.jpg"></a>
+					<p>1 convallis timestamp</p>
+				</div>
+
+				<div class="item">
+					<a href="#"><img src="../images/The_front_end/search/20.jpg"></a>
+					<p>1 convallis timestamp</p>
+				</div>
+
+				<div class="item">
+					<a href="#"><img src="../images/The_front_end/search/21.jpg"></a>
+					<p>1 convallis timestamp</p>
+				</div>
+
+				<div class="item">
+					<a href="#"><img src="../images/The_front_end/search/22.jpg"></a>
+					<p>1 convallis timestamp</p>
+				</div>
+
+				<div class="item">
+					<a href="#"><img src="../images/The_front_end/search/23.jpg"></a>
+					<p>1 convallis timestamp</p>
+				</div>
+
+				<div class="item">
+					<a href="details7.html">
+						<img src="../images/The_front_end/search/24.jpg">
+					</a>
+					<p>1 convallis timestamp</p>
+				</div>
+
+				<div class="item">
+					<a href="#"><img src="../images/The_front_end/search/25.jpg"></a>
+					<p>1 convallis timestamp</p>
+				</div>
+
+				<div class="item">
+					<a href="details3.html">
+						<img src="../images/The_front_end/search/26.jpg">
+					</a>
+					<p>1 convallis timestamp</p>
+				</div>
+
+				<div class="item">
+					<a href="#"><img src="../images/The_front_end/search/27.jpg"></a>
+					<p>1 convallis timestamp</p>
+				</div>
+
+				<div class="item">
+					<a href="#"><img src="../images/The_front_end/search/28.jpg"></a>
+					<p>1 convallis timestamp</p>
+				</div>
+
+				<div class="item">
+					<a href="#"><img src="../images/The_front_end/search/29.jpg"></a>
+					<p>1 convallis timestamp</p>
+				</div>
+
+				<div class="item">
+					<a href="#"><img src="../images/The_front_end/search/30.jpg"></a>
+					<p>1 convallis timestamp</p>
+				</div>
+
+				<div class="item">
+					<a href="#"><img src="../images/The_front_end/search/31.jpg"></a>
+					<p>1 convallis timestamp</p>
+				</div>
+
+				<div class="item">
+					<a href="#"><img src="../images/The_front_end/search/27.jpg"></a>
+					<p>1 convallis timestamp</p>
+				</div>
+
+				<div class="item">
+					<a href="#"><img src="../images/The_front_end/search/32.jpg"></a>
+					<p>1 convallis timestamp</p>
+				</div>
+
+				<div class="item">
+					<a href="#"><img src="../images/The_front_end/search/33.jpg"></a>
+					<p>1 convallis timestamp</p>
+				</div>
+
+				<div class="item">
+					<a href="#"><img src="../images/The_front_end/search/34.jpg"></a>
+					<p>1 convallis timestamp</p>
+				</div>
+
+				<div class="item">
+					<a href="#"><img src="../images/The_front_end/search/35.jpg"></a>
+					<p>1 convallis timestamp</p>
+				</div>
+
+
+			</div>
+		</div>
+
+
+		<div id="footer">
+			<!--footer-->
+			<div class="footer1">
+
+				<div class="footer-top">
+					<div class="foott-left">
+						<h2 style="margin-bottom: 25px; color: #FFFFFF;">反馈信息</h2>
+						<h5 style="color: #FFFFFF;">联系我们，提出不好的意见</h5>
+					</div>
+					<div class="foott-right">
+						<div class="button1 m-t-4p"><a href="#">加载更多</a></div>
+					</div>
+				</div>
+				<div class="footer-button">
+					<div class="footb-left">
+						<img src="../images/The_front_end/details/logo.png" style="width: 100%">
+					</div>
+					<div class="footb-right">
+						<ul>
+							<li><a>
+									<h3>首页</h3>
+								</a></li>
+							<li><a>为什么选择樱束？</a></li>
+							<li><a>关于我们</a></li>
+							<li><a>联系我们</a></li>
+							<li><a>微博</a></li>
 						</ul>
-				     </ul>
-               </div>
-		   </div>
-  </div>
-</div>
-	
-	
+						<ul>
+							<li><a>
+									<h3>法律知识</h3>
+								</a></li>
+							<li><a>协议</a></li>
+							<li><a>隐私</a></li>
+							<li><a>互联网使用</a></li>
+							<li><a>版权所有</a></li>
+						</ul>
+						<ul>
+							<li><a>
+									<h3>搜索</h3>
+								</a></li>
+							<li><a>产品介绍</a></li>
+							<li><a>购买</a></li>
+							<li><a>订单</a></li>
+							<li><a>快递问题</a></li>
+						</ul>
+						<ul>
+							<li><a>
+									<h3>关于我们</h3>
+								</a></li>
+							<li><a>xiapshidai@fashion.com</a></li>
+							<li><a>深圳市宝安区职业技术学校</a></li>
+							<li><a>+15-6956-4235</a></li>
+							<ul class="f-l" style="width: 100%;">
+								<li class="f-l p-r15"><a><img src="../images/The_front_end/home/QQ.png"></a></li>
+								<li class="f-l p-r15"><a><img src="../images/The_front_end/home/weibo.png"></a></li>
+								<li class="f-l"><a><img src="../images/The_front_end/home/chat.png"></a></li>
+							</ul>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
 	</div>
 	<script src="../jq/jquery-3.1.1.min.js"></script>
 </body>
+
 </html>
