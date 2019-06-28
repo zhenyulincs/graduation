@@ -71,7 +71,7 @@ $notification = \App\Message::where('receiverId',Auth::user()->id)->where('ifRea
             </li>
             @if (Auth::User()->premission >= 1)
             <li class="nav-item px-3">
-                <a class="nav-link" href="{{route('admin')}}">admin</a>
+                <a class="nav-link" href="{{route('admin.')}}">admin</a>
             </li>
             @endif
         </ul>
@@ -178,7 +178,7 @@ $notification = \App\Message::where('receiverId',Auth::user()->id)->where('ifRea
                     </a>
                 </li>
                 <br>
-                @if (Auth::User()->premission>=1)
+                @if (starts_with(Route::currentRouteName(),'admin.'))
                 <li class="nav-item">
                     <a class="nav-link" href="{{asset('admin')}}">
                         <img class="nav-icon" src="img/usermanagement.png" alt="用户管理">
@@ -188,15 +188,24 @@ $notification = \App\Message::where('receiverId',Auth::user()->id)->where('ifRea
                     <a class="nav-link" href="{{asset('admin/message')}}">
                         <img src="img/message.png" class="nav-icon">信息发送</a>
                 </li>
-                @endif
                 <li class="nav-item">
                     <a class="nav-link" href="{{asset('admin/producesmanagement')}}">
-                        <img class="nav-icon" src="img/producemanagement.png"> 商品管理</a>
+                        <img class="nav-icon" src="img/producemanagement.png">商品管理</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{asset('admin/personalinfo')}}">
                         <img class="nav-icon" src="img/personalinfo.png"> 个人信息</a>
                 </li>
+                @else
+                <li class="nav-item">
+                    <a class="nav-link" href="{{asset('home')}}">
+                        <img class="nav-icon" src="img/producemanagement.png">商品管理</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{asset('personalinfo')}}">
+                        <img class="nav-icon" src="img/personalinfo.png"> 个人信息</a>
+                </li>
+                @endif
             </ul>
         </nav>
         <button class="sidebar-minimizer brand-minimizer" type="button"></button>

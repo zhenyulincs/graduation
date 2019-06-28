@@ -24,6 +24,9 @@ class HomeController extends Controller
         $this->middleware('auth')->except('queryUserApi');
         $this->middleware('admin')->only('adminUser');
         $this->middleware('admin')->only('adminProducesManagement');
+        $this->middleware('admin')->only('adminMessage');
+        $this->middleware('admin')->only('adminPersonalInfo');
+        
     }
 
 
@@ -82,6 +85,19 @@ class HomeController extends Controller
             ]);
         }
         return $result;
+    }
+
+    public function PersonalInfo(Request $request)
+    {
+        $error = null;
+        $static = null;
+        if ($request->isMethod('POST')) {
+            $static = $this->personalInfoHandler($request);
+        }
+        return view('admin.personalinfo', [
+            'error' => $error,
+            'static' => $static
+        ]);
     }
 
     public function adminPersonalInfo(Request $request)
