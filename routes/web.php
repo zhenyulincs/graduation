@@ -21,10 +21,11 @@ Route::any('/home', 'HomeController@UserProducesManagement')->name('home');
 Route::get('/query', 'HomeController@queryApi');
 Route::get('/queryuser', 'HomeController@queryUserApi');
 Route::get('/messagecheckout/{id}','HomeController@messageCheckout');
-Route::prefix("admin")->group(function() {
-    Route::any('producesmanagement', 'HomeController@adminProducesManagement');
-    Route::any('/', 'HomeController@adminUser')->name('admin');
-    Route::any('message', 'HomeController@adminMessage');
-    Route::post('message/submit', 'HomeController@adminMessage');
-    Route::any('personalinfo', 'HomeController@adminPersonalInfo');
+Route::any('/personalinfo', 'HomeController@PersonalInfo');
+Route::prefix("admin")->name('admin.')->group(function() {
+    Route::any('producesmanagement', 'HomeController@adminProducesManagement')->name('producesmanagement');
+    Route::any('/', 'HomeController@adminUser');
+    Route::any('message', 'HomeController@adminMessage')->name('message');
+    Route::any('personalinfo', 'HomeController@adminPersonalInfo')->name('personalinfo');
+    Route::post('message/submit', 'HomeController@adminMessage')->name('message.submit');
 });
