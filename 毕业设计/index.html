@@ -3,7 +3,7 @@
 
 <head>
 	<meta charset="utf-8">
-
+	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<link href="css/style.css" rel="stylesheet" type="text/css">
 
 
@@ -18,15 +18,19 @@
 	<script type="text/javascript" src="http://api.map.baidu.com/api?key=&v=1.1&services=true"></script>
 	<script src="jq/jquery-3.4.1.min.js"></script>
 	<title>欢迎光临樱束电商</title>
+	
+	<script src="js/popper.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<title>首页</title>
 </head>
 
 <body>
-	<div class="all">
+	<div class="all" style="height:auto">
 
 		<div id="nav">
 			<div class="center">
-				<div class="nav">
-					<a href="http://127.0.0.1/graduation/public/login">
+				<div class="nav" style="display: block">
+					<a href="http://127.0.0.1/graduation/public/admin">
 						<img class="user" src="images/The_front_end/nav/user.png" alt="图片无法显示">
 					</a>
 					<img class="logo" src="images/The_front_end/nav/logo.png" alt="图片无法显示">
@@ -91,24 +95,46 @@
 			</div>
 		</div>
 
-		<div id="head">
+		<div id="head" style="margin-top:4%">
 			<!--<img class="header" src="images/1.前端/02.首页/header.png" alt="图片无法显示">-->
-			<div class="content111">
-				<ul>
-					<li><a href="#"><img style="width: 100%" src="images/The_front_end/home/header2.png"></a></li>
-					<!--<li><a href="#"><img style="width: 100%" src="images/The_front_end/home/header3.png"></a></li>
-								<li><a href="#"><img style="width: 100%" src="images/The_front_end/home/header4.png"></a></li>
-								<li><a href="#"><img style="width: 100%" src="images/The_front_end/home/header5.png"></a></li>
-								<li><a href="#"><img style="width: 100%" src="images/The_front_end/home/header6.png"></a></li>-->
-				</ul>
-				<div class="arrow">
-					<span class="arrow-left">&lt;</span>
-					<span class="arrow-right">&gt;</span>
+			<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+				<ol class="carousel-indicators">
+					<li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+					<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+					<li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+					<li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+					<li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
+				</ol>
+				<div class="carousel-inner">
+					<div class="carousel-item active">
+						<img src="images/header2.png" class="d-block w-100" alt="...">
+					</div>
+					<div class="carousel-item">
+						<img src="images/header3.png" class="d-block w-100" alt="...">
+					</div>
+					<div class="carousel-item">
+						<img src="images/header4.png" class="d-block w-100" alt="...">
+					</div>
+					<div class="carousel-item">
+						<img src="images/header5.png" class="d-block w-100" alt="...">
+					</div>
+					<div class="carousel-item">
+						<img src="images/header6.png" class="d-block w-100" alt="...">
+					</div>
 				</div>
-				<p>
-					<!--用心收集的世界精美杂货-->
-				</p>
+				<a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+					<span class="sr-only">前一张</span>
+				</a>
+				<a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+					<span class="carousel-control-next-icon" aria-hidden="true"></span>
+					<span class="sr-only">后一张</span>
+				</a>
 			</div>
+			<p>
+				<!--用心收集的世界精美杂货-->
+			</p>
+		</div>
 
 
 
@@ -157,250 +183,251 @@
 				</div>
 			</div>
 		</div>
-		<div id="video">
-			<!--视频-->
-			<p class="video_p">经典视频</p>
-			<div class="vid">
-				<div class="video_img">
+	</div>
+	<div id="video">
+		<!--视频-->
+		<p class="video_p">经典视频</p>
+		<div class="vid">
+			<div class="video_img">
 
-					<video class="video_img1_11 ml" style="object-fit: contain;" controls>
+				<video class="video_img1_11 ml" style="object-fit: contain;" controls>
 
-						<source src="images/The_front_end/home/one (1).mp4" type="video/mp4">
+					<source src="images/The_front_end/home/one (1).mp4" type="video/mp4">
 
-					</video>
-					<video class="video_img1_1" style="object-fit: contain;" controls>
+				</video>
+				<video class="video_img1_1" style="object-fit: contain;" controls>
 
-						<source src="images/The_front_end/home/one (2).mp4" type="video/mp4">
+					<source src="images/The_front_end/home/one (2).mp4" type="video/mp4">
 
-					</video>
-					<video class="video_img1_1" style="object-fit: contain;" controls>
+				</video>
+				<video class="video_img1_1" style="object-fit: contain;" controls>
 
-						<source src="images/The_front_end/home/one (3).mp4" type="video/mp4">
+					<source src="images/The_front_end/home/one (3).mp4" type="video/mp4">
 
-					</video>
+				</video>
 
 
-				</div>
-			</div>
-
-		</div>
-		<div id="cooperative_partner">
-			<div id="cooperative_partner1">
-				<ul>
-					<li><img src="images/The_front_end/home/company.png"></li>
-					<li><img src="images/The_front_end/home/company1.png"></li>
-					<li><img src="images/The_front_end/home/dream.png"></li>
-					<li><img class="cooperative_partner1_img ml" src="images/The_front_end/home/company2.png"></li>
-					<li><img src="images/The_front_end/home/company4.png"></li>
-				</ul>
 			</div>
 		</div>
-		<div id="shop_address">
-			<!--店铺地址-->
-			<p class="address">店铺地址</p>
-			<div class="add">
-				<!-- <img class="address_img" style="margin-left: 306px;margin-right: 76px" src="images/1.前端/02.首页/地图.png">-->
-				<div id="dituContent"></div>
 
-
-
-				<div class="address_p" style=" position: absolute;">
-					<p class="address_p1">店铺地址</p>
-					<p>地址：深圳市宝安区职业技术学校信息部X233</p>
-					<p>周一至周五:09-20点</p>
-					<p>周六：09-20点，周日：10-19点</p>
-					<p>电话：+15-6956-4235</p>
-					<p>Email：xiapshidai@fashion.com</p>
-					<a>
-						<p>谷歌地图</p>
-					</a>
-					<div class="lujing">
-						<img src="images/The_front_end/home/QQ.png">
-						<img src="images/The_front_end/home/weibo.png">
-						<img src="images/The_front_end/home/chat.png">
-					</div>
-				</div>
-			</div>
-
+	</div>
+	<div id="cooperative_partner">
+		<div id="cooperative_partner1">
+			<ul>
+				<li><img src="images/The_front_end/home/company.png"></li>
+				<li><img src="images/The_front_end/home/company1.png"></li>
+				<li><img src="images/The_front_end/home/dream.png"></li>
+				<li><img class="cooperative_partner1_img ml" src="images/The_front_end/home/company2.png"></li>
+				<li><img src="images/The_front_end/home/company4.png"></li>
+			</ul>
 		</div>
-		<div id="footer">
-			<!--footer-->
-			<div class="footer1">
+	</div>
+	<div id="shop_address">
+		<!--店铺地址-->
+		<p class="address">店铺地址</p>
+		<div class="add">
+			<!-- <img class="address_img" style="margin-left: 306px;margin-right: 76px" src="images/1.前端/02.首页/地图.png">-->
+			<div id="dituContent"></div>
 
-				<div class="footer-top">
-					<div class="foott-left">
-						<h2 style="margin-bottom: 25px; color: #FFFFFF;">反馈信息</h2>
-						<h5 style="color: #FFFFFF;">联系我们，提出不好的意见</h5>
-					</div>
-					<div class="foott-right">
-						<div class="button1 m-t-4p"><a href="#">反馈我们</a></div>
-					</div>
-				</div>
-				<div class="footer-button">
-					<div class="footb-left">
-						<img src="images/The_front_end/details/logo.png" style="width: 100%">
-					</div>
-					<div class="footb-right">
-						<ul>
-							<li><a>
-									<h3>首页</h3>
-								</a></li>
-							<li><a>为什么选择樱束？</a></li>
-							<li><a>关于我们</a></li>
-							<li><a>联系我们</a></li>
-							<li><a>微博</a></li>
-						</ul>
-						<ul>
-							<li><a>
-									<h3>法律知识</h3>
-								</a></li>
-							<li><a>协议</a></li>
-							<li><a>隐私</a></li>
-							<li><a>互联网使用</a></li>
-							<li><a>版权所有</a></li>
-						</ul>
-						<ul>
-							<li><a>
-									<h3>搜索</h3>
-								</a></li>
-							<li><a>产品介绍</a></li>
-							<li><a>购买</a></li>
-							<li><a>订单</a></li>
-							<li><a>快递问题</a></li>
-						</ul>
-						<ul>
-							<li><a>
-									<h3>关于我们</h3>
-								</a></li>
-							<li><a>xiapshidai@fashion.com</a></li>
-							<li><a>深圳市宝安区职业技术学校</a></li>
-							<li><a>+15-6956-4235</a></li>
-							<ul class="f-l" style="width: 100%;">
-								<li class="f-l p-r15"><a><img src="images/The_front_end/home/QQ.png"></a></li>
-								<li class="f-l p-r15"><a><img src="images/The_front_end/home/weibo.png"></a></li>
-								<li class="f-l"><a><img src="images/The_front_end/home/chat.png"></a></li>
-							</ul>
-						</ul>
-					</div>
+
+
+			<div class="address_p" style=" position: absolute;">
+				<p class="address_p1">店铺地址</p>
+				<p>地址：深圳市宝安区职业技术学校信息部X233</p>
+				<p>周一至周五:09-20点</p>
+				<p>周六：09-20点，周日：10-19点</p>
+				<p>电话：+15-6956-4235</p>
+				<p>Email：xiapshidai@fashion.com</p>
+				<a>
+					<p>谷歌地图</p>
+				</a>
+				<div class="lujing">
+					<img src="images/The_front_end/home/QQ.png">
+					<img src="images/The_front_end/home/weibo.png">
+					<img src="images/The_front_end/home/chat.png">
 				</div>
 			</div>
 		</div>
 
+	</div>
+	<div id="footer">
+		<!--footer-->
+		<div class="footer1">
+
+			<div class="footer-top">
+				<div class="foott-left">
+					<h2 style="margin-bottom: 25px; color: #FFFFFF;">反馈信息</h2>
+					<h5 style="color: #FFFFFF;">联系我们，提出不好的意见</h5>
+				</div>
+				<div class="foott-right">
+					<div class="button1 m-t-4p"><a href="#">反馈我们</a></div>
+				</div>
+			</div>
+			<div class="footer-button">
+				<div class="footb-left">
+					<img src="images/The_front_end/details/logo.png" style="width: 100%">
+				</div>
+				<div class="footb-right">
+					<ul>
+						<li><a>
+								<h3>首页</h3>
+							</a></li>
+						<li><a>为什么选择樱束？</a></li>
+						<li><a>关于我们</a></li>
+						<li><a>联系我们</a></li>
+						<li><a>微博</a></li>
+					</ul>
+					<ul>
+						<li><a>
+								<h3>法律知识</h3>
+							</a></li>
+						<li><a>协议</a></li>
+						<li><a>隐私</a></li>
+						<li><a>互联网使用</a></li>
+						<li><a>版权所有</a></li>
+					</ul>
+					<ul>
+						<li><a>
+								<h3>搜索</h3>
+							</a></li>
+						<li><a>产品介绍</a></li>
+						<li><a>购买</a></li>
+						<li><a>订单</a></li>
+						<li><a>快递问题</a></li>
+					</ul>
+					<ul>
+						<li><a>
+								<h3>关于我们</h3>
+							</a></li>
+						<li><a>xiapshidai@fashion.com</a></li>
+						<li><a>深圳市宝安区职业技术学校</a></li>
+						<li><a>+15-6956-4235</a></li>
+						<ul class="f-l" style="width: 100%;">
+							<li class="f-l p-r15"><a><img src="images/The_front_end/home/QQ.png"></a></li>
+							<li class="f-l p-r15"><a><img src="images/The_front_end/home/weibo.png"></a></li>
+							<li class="f-l"><a><img src="images/The_front_end/home/chat.png"></a></li>
+						</ul>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
 
 
 
-		<script src="jq/jquery-3.1.1.min.js"></script>
 
-		<script>
-			$(function () {
-				$(".content111>ul>li").mouseenter(function () {
+	<script src="jq/jquery-3.1.1.min.js"></script>
 
-				});
-				$(".content111").mouseleave(function () {
-					$(this).find('li').css("opacity", 1);
-				});
+	<script>
+		$(function () {
+			$(".content111>ul>li").mouseenter(function () {
+
 			});
-		</script>
+			$(".content111").mouseleave(function () {
+				$(this).find('li').css("opacity", 1);
+			});
+		});
+	</script>
 
 
 
-		<script>
-			//创建和初始化地图函数：
-			function initMap() {
-				createMap();//创建地图
-				setMapEvent();//设置地图事件
-				addMapControl();//向地图添加控件
-				addMarker();//向地图中添加marker
-			}
+	<script>
+		//创建和初始化地图函数：
+		function initMap() {
+			createMap();//创建地图
+			setMapEvent();//设置地图事件
+			addMapControl();//向地图添加控件
+			addMarker();//向地图中添加marker
+		}
 
-			//创建地图函数：
-			function createMap() {
-				var map = new BMap.Map("dituContent");//在百度地图容器中创建一个地图
-				var point = new BMap.Point(113.847329, 22.648176);//定义一个中心点坐标
-				map.centerAndZoom(point, 17);//设定地图的中心点和坐标并将地图显示在地图容器中
-				window.map = map;//将map变量存储在全局
-			}
+		//创建地图函数：
+		function createMap() {
+			var map = new BMap.Map("dituContent");//在百度地图容器中创建一个地图
+			var point = new BMap.Point(113.847329, 22.648176);//定义一个中心点坐标
+			map.centerAndZoom(point, 17);//设定地图的中心点和坐标并将地图显示在地图容器中
+			window.map = map;//将map变量存储在全局
+		}
 
-			//地图事件设置函数：
-			function setMapEvent() {
-				map.enableDragging();//启用地图拖拽事件，默认启用(可不写)
-				map.enableScrollWheelZoom();//启用地图滚轮放大缩小
-				map.enableDoubleClickZoom();//启用鼠标双击放大，默认启用(可不写)
-				map.enableKeyboard();//启用键盘上下左右键移动地图
-			}
+		//地图事件设置函数：
+		function setMapEvent() {
+			map.enableDragging();//启用地图拖拽事件，默认启用(可不写)
+			map.enableScrollWheelZoom();//启用地图滚轮放大缩小
+			map.enableDoubleClickZoom();//启用鼠标双击放大，默认启用(可不写)
+			map.enableKeyboard();//启用键盘上下左右键移动地图
+		}
 
-			//地图控件添加函数：
-			function addMapControl() {
-				//向地图中添加缩放控件
-				var ctrl_nav = new BMap.NavigationControl({ anchor: BMAP_ANCHOR_TOP_LEFT, type: BMAP_NAVIGATION_CONTROL_LARGE });
-				map.addControl(ctrl_nav);
-				//向地图中添加缩略图控件
-				var ctrl_ove = new BMap.OverviewMapControl({ anchor: BMAP_ANCHOR_BOTTOM_RIGHT, isOpen: 1 });
-				map.addControl(ctrl_ove);
-				//向地图中添加比例尺控件
-				var ctrl_sca = new BMap.ScaleControl({ anchor: BMAP_ANCHOR_BOTTOM_LEFT });
-				map.addControl(ctrl_sca);
-			}
+		//地图控件添加函数：
+		function addMapControl() {
+			//向地图中添加缩放控件
+			var ctrl_nav = new BMap.NavigationControl({ anchor: BMAP_ANCHOR_TOP_LEFT, type: BMAP_NAVIGATION_CONTROL_LARGE });
+			map.addControl(ctrl_nav);
+			//向地图中添加缩略图控件
+			var ctrl_ove = new BMap.OverviewMapControl({ anchor: BMAP_ANCHOR_BOTTOM_RIGHT, isOpen: 1 });
+			map.addControl(ctrl_ove);
+			//向地图中添加比例尺控件
+			var ctrl_sca = new BMap.ScaleControl({ anchor: BMAP_ANCHOR_BOTTOM_LEFT });
+			map.addControl(ctrl_sca);
+		}
 
-			//标注点数组
-			var markerArr = [{ title: "宝安区职业技术学校", content: "深圳市宝安区职业技术学校信息部X233", point: "113.848128|22.648693", isOpen: 1, icon: { w: 21, h: 21, l: 0, t: 0, x: 6, lb: 5 } }
-			];
-			//创建marker
-			function addMarker() {
-				for (var i = 0; i < markerArr.length; i++) {
-					var json = markerArr[i];
-					var p0 = json.point.split("|")[0];
-					var p1 = json.point.split("|")[1];
-					var point = new BMap.Point(p0, p1);
-					var iconImg = createIcon(json.icon);
-					var marker = new BMap.Marker(point, { icon: iconImg });
-					var iw = createInfoWindow(i);
-					var label = new BMap.Label(json.title, { "offset": new BMap.Size(json.icon.lb - json.icon.x + 10, -20) });
-					marker.setLabel(label);
-					map.addOverlay(marker);
-					label.setStyle({
-						borderColor: "#808080",
-						color: "#333",
-						cursor: "pointer"
-					});
-
-					(function () {
-						var index = i;
-						var _iw = createInfoWindow(i);
-						var _marker = marker;
-						_marker.addEventListener("click", function () {
-							this.openInfoWindow(_iw);
-						});
-						_iw.addEventListener("open", function () {
-							_marker.getLabel().hide();
-						})
-						_iw.addEventListener("close", function () {
-							_marker.getLabel().show();
-						})
-						label.addEventListener("click", function () {
-							_marker.openInfoWindow(_iw);
-						})
-						if (!!json.isOpen) {
-							label.hide();
-							_marker.openInfoWindow(_iw);
-						}
-					})()
-				}
-			}
-			//创建InfoWindow
-			function createInfoWindow(i) {
+		//标注点数组
+		var markerArr = [{ title: "宝安区职业技术学校", content: "深圳市宝安区职业技术学校信息部X233", point: "113.848128|22.648693", isOpen: 1, icon: { w: 21, h: 21, l: 0, t: 0, x: 6, lb: 5 } }
+		];
+		//创建marker
+		function addMarker() {
+			for (var i = 0; i < markerArr.length; i++) {
 				var json = markerArr[i];
-				var iw = new BMap.InfoWindow("<b class='iw_poi_title' title='" + json.title + "'>" + json.title + "</b><div class='iw_poi_content'>" + json.content + "</div>");
-				return iw;
-			}
-			//创建一个Icon
-			function createIcon(json) {
-				var icon = new BMap.Icon("http://app.baidu.com/map/images/us_mk_icon.png", new BMap.Size(json.w, json.h), { imageOffset: new BMap.Size(-json.l, -json.t), infoWindowOffset: new BMap.Size(json.lb + 5, 1), offset: new BMap.Size(json.x, json.h) })
-				return icon;
-			}
+				var p0 = json.point.split("|")[0];
+				var p1 = json.point.split("|")[1];
+				var point = new BMap.Point(p0, p1);
+				var iconImg = createIcon(json.icon);
+				var marker = new BMap.Marker(point, { icon: iconImg });
+				var iw = createInfoWindow(i);
+				var label = new BMap.Label(json.title, { "offset": new BMap.Size(json.icon.lb - json.icon.x + 10, -20) });
+				marker.setLabel(label);
+				map.addOverlay(marker);
+				label.setStyle({
+					borderColor: "#808080",
+					color: "#333",
+					cursor: "pointer"
+				});
 
-			initMap();//创建和初始化地图
-		</script>
+				(function () {
+					var index = i;
+					var _iw = createInfoWindow(i);
+					var _marker = marker;
+					_marker.addEventListener("click", function () {
+						this.openInfoWindow(_iw);
+					});
+					_iw.addEventListener("open", function () {
+						_marker.getLabel().hide();
+					})
+					_iw.addEventListener("close", function () {
+						_marker.getLabel().show();
+					})
+					label.addEventListener("click", function () {
+						_marker.openInfoWindow(_iw);
+					})
+					if (!!json.isOpen) {
+						label.hide();
+						_marker.openInfoWindow(_iw);
+					}
+				})()
+			}
+		}
+		//创建InfoWindow
+		function createInfoWindow(i) {
+			var json = markerArr[i];
+			var iw = new BMap.InfoWindow("<b class='iw_poi_title' title='" + json.title + "'>" + json.title + "</b><div class='iw_poi_content'>" + json.content + "</div>");
+			return iw;
+		}
+		//创建一个Icon
+		function createIcon(json) {
+			var icon = new BMap.Icon("http://app.baidu.com/map/images/us_mk_icon.png", new BMap.Size(json.w, json.h), { imageOffset: new BMap.Size(-json.l, -json.t), infoWindowOffset: new BMap.Size(json.lb + 5, 1), offset: new BMap.Size(json.x, json.h) })
+			return icon;
+		}
+
+		initMap();//创建和初始化地图
+	</script>
 
 
 
