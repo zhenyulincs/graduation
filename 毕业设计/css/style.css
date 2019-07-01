@@ -6,6 +6,10 @@
 	text-decoration: none;
 	
 }
+.body{
+	overflow-x: hidden;
+	max-width: 1280px;
+}
 @font-face{
 	src: url()
 }
@@ -20,6 +24,7 @@ img{
 	
 }
 @media only screen and (max-width: 1280px) {
+
 	
 	#all
 	{
@@ -792,26 +797,41 @@ position: relative;
     width:50%;
 }
 .recommend_img1{
-    margin-top: -450px;
 	height: auto;
+	width: 30%;
+	cursor: pointer;
+	transition: all 0.6s;
+}
+.recommend_img1:hover{
+	transform: scale(1.2);
 }
 .recommend_img2{
-	margin-left:32px;
 	height: auto;
+	width: 30%;
+	cursor: pointer;
+	transition: all 0.6s;
 }
+.recommend_img2:hover{
+		transform: scale(1.2);
+}
+
 .recommend_img3{
-	margin-top: 35px;
-	
-	height: auto;
-	
+	width: 64%;
+	cursor: pointer;
+	transition: all 0.6s;
 }
-.recommend_img4{
-	float: left;
-	width: 38.5%;
-	margin-top: -670px;
-	margin-left:875px;
-	height: auto;
-	
+.recommend_img3:hover{
+		transform: scale(1.2);
+}
+.recommend_img .recommend_img4{
+	width: 38.2%;
+	margin-left: 605px;
+	margin-top: -468px;
+	cursor: pointer;
+	transition: all 0.6s;
+}
+.recommend_img .recommend_img4:hover{
+	transform: scale(1.2);
 }
 
 #video {

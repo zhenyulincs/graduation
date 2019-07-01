@@ -30,6 +30,12 @@ body{
 
 
 @media only screen and (max-width: 1280px) {
+	.ul_li{
+		float: left;
+	}
+	
+	
+	
 	#all
 	{
 		width: 1280px;
@@ -37,11 +43,15 @@ body{
 		
 #all #image{
 	margin-bottom: 10%;
-	margin-top: -3%;
+	margin-top: -13%;
 	width: 1280px;
 }
 
-
+#all #nav .tian
+{
+	margin-left: 35%;
+    
+}
 #image #image1{
 	width:1070px;
 	height: 800px;
@@ -460,7 +470,10 @@ width:274px;
 	#all #footer p {
     margin-left: 600px;
 }
-	
+	 #all #nav section {
+	top: -145px;
+}
+
 
   /*  #nav{
 		width: 1280px;
@@ -506,14 +519,15 @@ width:274px;
 
 
 	#heade{
-		
+	
 	}
 	#heade img{
 	width: 66%;
-	height: auto;
+	
 }
 	#header1{
 		width: 1280px;
+		height:40%;	
 	}
 	
 	
@@ -526,10 +540,10 @@ width:274px;
 		margin:-450px 0 0 650px;
 	}
 	
-	#header1 .header1_p{
+	.header1_p{
 	font-size: 20px;
 	padding-left: 645px;
-	margin-top:-590px;
+	margin-top:90px;
 }
 	.entry_area{
 		
@@ -958,22 +972,24 @@ position:absolute;    /*隐藏*/
 }
 #header1{
 	height: auto;
+	background-image: url(../images/The_front_end/one_sub/back.png);
 }
-.header1_p{
-	font-family: "微软雅黑";
-	font-size: 40px;
-	padding-left: 885px;
-	margin-top:45px;
-	padding-top: 65px;
-	color: #000000;
-	padding-bottom: 55px;
-}
-.col-1{
+
+#all .col-1{
 	width: 90%;
 	margin: auto;
 }
-#heade .col-1 ul{
+#all .col-1 ul{
 	float: left;
+}
+.heade_img1{
+	width: 85%;
+	
+	margin: auto;
+}
+.heade_img1 ul li{
+	float: left;
+	width: 25%;
 }
 /*.clo{
 	
@@ -1034,13 +1050,19 @@ position:absolute;    /*隐藏*/
 
 #bgfied{
 	height: 600px;
- background-image: url(../images/1.前端/03.产品专区/固定背景.png);
+/* background-image: url(../images/1.前端/03.产品专区/固定背景.png);*/
+	background-image: url(../images/The_front_end/one_sub/back.png);
  background-position: center;
  background-repeat: no-repeat;
- background-attachment: fixed;
+/* background-attachment: fixed;*/
  background-size:cover;
 }
 
+
+.ul_li{
+	margin-right: 52px;
+	
+}
 
 
 
