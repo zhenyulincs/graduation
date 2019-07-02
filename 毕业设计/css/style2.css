@@ -1055,6 +1055,7 @@ position:absolute;    /*隐藏*/
  background-position: center;
  background-repeat: no-repeat;
 /* background-attachment: fixed;*/
+margin-top: -25px;
  background-size:cover;
 }
 
