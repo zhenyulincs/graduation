@@ -25,7 +25,7 @@
         "simple-line-icons": "2.4.1"
     },
     "devDependencies": {
-        "axios": "^0.19",
+        "axios": "^0.21",
         "bootstrap-sass": "^3.3.7",
         "jquery": ">=3.4.0",
         "laravel-mix": "^1.0",
